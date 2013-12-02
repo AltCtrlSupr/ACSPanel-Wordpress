@@ -7,7 +7,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use ACS\ACSPanelWordpressBundle\Entity\WPSetup;
 use ACS\ACSPanelWordpressBundle\Form\WPSetupType;
-use ACS\ACSPanelWordpressBundle\Form\DomainType;
+
+use ACS\ACSPanelBundle\Entity\HttpdHost;
 
 /**
  * WPSetup controller.
@@ -64,7 +65,6 @@ class WPSetupController extends Controller
     public function newAction()
     {
         $entity = new WPSetup();
-        //$form   = $this->createForm(new WPSetupType($this->container), $entity);
         $form   = $this->createForm(new WPSetupType($this->container), $entity);
 
         return $this->render('ACSACSPanelWordpressBundle:WPSetup:new.html.twig', array(
@@ -79,11 +79,33 @@ class WPSetupController extends Controller
      */
     public function createAction(Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
         $entity  = new WPSetup();
+
         $form = $this->createForm(new WPSetupType($this->container), $entity);
         $form->bind($request);
 
         if ($form->isValid()) {
+
+            $domain = $form['domain']->getData();
+            $user = $form['user']->getData();
+
+            // Persist domain
+            $domain->setUser($user);
+            $em->persist($domain);
+
+            $httpdhost = new HttpdHost();
+            $httpdhost->setDomain($domain);
+
+            // Add open_basedir wordpress directory
+            $configuration = "
+                <Directory '/home/$user/web/$domain/httpdocs'>
+                    php_admin_value open_basedir '/home/$user/web/$domain:/srv/httpd/error:/tmp:/var/www/source'
+                </Directory>";
+            $httpdhost->setConfiguration($configuration);
+            $em->persist($httpdhost);
+
+            $entity->setHttpdHost($httpdhost);
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
