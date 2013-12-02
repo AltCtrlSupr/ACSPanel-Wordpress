@@ -14,7 +14,6 @@ class WPSetup
      */
     private $id;
 
-
     /**
      * Get id
      *
@@ -24,6 +23,7 @@ class WPSetup
     {
         return $this->id;
     }
+
     /**
      * @var boolean
      */

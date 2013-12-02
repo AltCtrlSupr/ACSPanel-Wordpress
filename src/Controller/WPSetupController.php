@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use ACS\ACSPanelWordpressBundle\Entity\WPSetup;
 use ACS\ACSPanelWordpressBundle\Form\WPSetupType;
+use ACS\ACSPanelWordpressBundle\Form\DomainType;
 
 /**
  * WPSetup controller.
@@ -63,6 +64,7 @@ class WPSetupController extends Controller
     public function newAction()
     {
         $entity = new WPSetup();
+        //$form   = $this->createForm(new WPSetupType($this->container), $entity);
         $form   = $this->createForm(new WPSetupType($this->container), $entity);
 
         return $this->render('ACSACSPanelWordpressBundle:WPSetup:new.html.twig', array(
