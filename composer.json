@@ -3,7 +3,7 @@
     "description": "Wordpress Farm bundle for ACSPanel",
     "type": "library",
     "autoload": {
-        "psr-0": { "": "src/" }
+        "psr-0": { "": "" }
     },
     "require": {
         "php": ">=5.3.3"
@@ -19,6 +19,6 @@
         }
     ],
     "autoload": {
-        "classmap": ["src"]
+        "classmap": [""]
     }
 }
