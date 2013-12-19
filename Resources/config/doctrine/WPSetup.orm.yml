@@ -1,6 +1,7 @@
 ACS\ACSPanelWordpressBundle\Entity\WPSetup:
     type: entity
     table: wp_setup
+    repositoryClass: ACS\ACSPanelWordpressBundle\Model\WPSetupRepository
     gedmo:
         loggable: {}
     fields:
