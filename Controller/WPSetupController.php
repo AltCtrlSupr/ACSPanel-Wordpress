@@ -33,8 +33,6 @@ class WPSetupController extends Controller
             $entities = $em->getRepository('ACSACSPanelWordpressBundle:WPSetup')->findByUser($this->get('security.context')->getToken()->getUser());
         }
 
-        $entities = $em->getRepository('ACSACSPanelWordpressBundle:WPSetup')->findAll();
-
         $paginator  = $this->get('knp_paginator');
         $entities = $paginator->paginate(
             $entities,
