@@ -88,10 +88,9 @@ class WPSetupController extends Controller
         if ($form->isValid()) {
 
             $domain = $form['domain']->getData();
-            $user = $form['user']->getData();
+            if(isset($form['user']))
+                $domain->setUser($form['user']->getData());
 
-            // Persist domain
-            $domain->setUser($user);
             $em->persist($domain);
 
             $httpdhost = new HttpdHost();
