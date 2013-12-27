@@ -39,9 +39,13 @@ ACS\ACSPanelWordpressBundle\Entity\WPSetup:
             targetEntity: ACS\ACSPanelBundle\Entity\HttpdHost
             gedmo:
                 - versioned
+            joinColumn:
+                onDelete: CASCADE
         database_user:
             targetEntity: ACS\ACSPanelBundle\Entity\DatabaseUser
             cascade: [ "persist" ]
+            joinColumn:
+                onDelete: CASCADE
 
     lifecycleCallbacks:
       prePersist: [ setCreatedAtValue, setUserValue ]
