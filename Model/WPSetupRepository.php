@@ -19,7 +19,7 @@ class WPSetupRepository extends EntityRepository
 
     public function findByUsers(Array $user)
     {
-        $query = $this->_em->createQuery('SELECT h FROM ACS\ACSPanelWordpressBundle\Entity\WPSetup w WHERE w.user IN (?1)')->setParameter(1, $user);
+        $query = $this->_em->createQuery('SELECT w FROM ACS\ACSPanelWordpressBundle\Entity\WPSetup w WHERE w.user IN (?1)')->setParameter(1, $user);
         return $query->getResult();
     }
 }
