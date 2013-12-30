@@ -9,6 +9,8 @@ use ACS\ACSPanelWordpressBundle\Entity\WPSetup;
 use ACS\ACSPanelWordpressBundle\Form\WPSetupType;
 
 use ACS\ACSPanelBundle\Entity\HttpdHost;
+use ACS\ACSPanelBundle\Entity\DB;
+use ACS\ACSPanelBundle\Entity\DatabaseUser;
 
 /**
  * WPSetup controller.
@@ -94,6 +96,8 @@ class WPSetupController extends Controller
 
         if ($form->isValid()) {
 
+            $user = $this->get('security.context')->getToken()->getUser();
+
             $domain = $form['domain']->getData();
             if(isset($form['user']))
                 $domain->setUser($form['user']->getData());
@@ -111,8 +115,20 @@ class WPSetupController extends Controller
             $httpdhost->setConfiguration($configuration);
             $em->persist($httpdhost);
 
+            $validator = $this->get('validator');
+            // Add database and user
+            $wpdb = new DB();
+            $wpdb->setName($user->getUsername().'_wp_'.$httpdhost->getId());
+            $em->persist($wpdb);
+
+            $dbuser = new DatabaseUser();
+            $dbuser->setUsername($user->getId().'_wp_'.$httpdhost->getId());
+            $dbuser->setDb($wpdb);
+            $em->persist($dbuser);
+
             $entity->setHttpdHost($httpdhost);
-            $em = $this->getDoctrine()->getManager();
+            $entity->setDatabaseUser($dbuser);
+            $entity->setEnabled(true);
             $em->persist($entity);
             $em->flush();
 
