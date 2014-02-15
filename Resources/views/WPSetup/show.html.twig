@@ -5,19 +5,19 @@
 <table class="record_properties table">
     <tbody>
         <tr>
-            <th>Id</th>
-            <td>{{ entity.id }}</td>
+            <th>{% trans %}wpsetup.field.domain{% endtrans %}</th>
+            <td><a href="{{ path('httpdhost_show', { 'id': entity.httpdhost.id }) }}">{{ entity.httpdhost.domain }}</a></td>
         </tr>
         <tr>
-            <th>Enabled</th>
+            <th>{% trans %}wpsetup.field.enabled{% endtrans %}</th>
             <td>{{ entity.enabled }}</td>
         </tr>
         <tr>
-            <th>Createdat</th>
+            <th>{% trans %}created_at{% endtrans %}</th>
             <td>{{ entity.createdAt|date('Y-m-d H:i:s') }}</td>
         </tr>
         <tr>
-            <th>Updatedat</th>
+            <th>{% trans %}updated_at{% endtrans %}</th>
             <td>{{ entity.updatedAt|date('Y-m-d H:i:s') }}</td>
         </tr>
     </tbody>
