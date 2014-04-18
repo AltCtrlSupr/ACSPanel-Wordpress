@@ -1,5 +1,5 @@
 {
-    "name": "acs/panelwordpress",
+    "name": "acs/acspanel-wordpress",
     "description": "Wordpress Farm bundle for ACSPanel",
     "type": "library",
     "autoload": {
