@@ -29,11 +29,15 @@ class WPSetupType extends AbstractType
             // TODO: Change form type to something simpler
             ->add('domain', new WPDomainType($container), array(
                 'mapped' => false
-            ));
+            ))
+            ->add('database', new \ACS\ACSPanelBundle\Form\DBType($container), array(
+                'mapped' => false
+            ))
+        ;
 
-            if($superadmin){
-                $builder->add('user');
-            }
+        if($superadmin){
+            $builder->add('user');
+        }
         ;
     }
 
