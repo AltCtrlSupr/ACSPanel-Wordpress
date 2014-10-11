@@ -48,5 +48,5 @@ ACS\ACSPanelWordpressBundle\Entity\WPSetup:
                 onDelete: CASCADE
 
     lifecycleCallbacks:
-      prePersist: [ setCreatedAtValue, setUserValue ]
+      prePersist: [ setCreatedAtValue ]
       preUpdate: [ setUpdatedAtValue ]
