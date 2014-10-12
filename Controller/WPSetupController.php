@@ -124,12 +124,14 @@ class WPSetupController extends Controller
             $dbuser = new DatabaseUser();
             $dbuser->setUsername($user->getId().'_wp_'.$httpdhost->getId());
             $dbuser->setDb($wpdb);
+            $dbuser->setPassword('');
             $em->persist($dbuser);
 
             $entity->setHttpdHost($httpdhost);
             $entity->setDatabaseUser($dbuser);
             $entity->setEnabled(true);
             $em->persist($entity);
+
             $em->flush();
 
             return $this->redirect($this->generateUrl('wpsetup_show', array('id' => $entity->getId())));

@@ -38,7 +38,7 @@ class EntitySubscriber implements EventSubscriber
         $entity = $args->getEntity();
         $entityManager = $args->getEntityManager();
 
-        if ($entity instanceof DB){
+        if ($entity instanceof \ACS\ACSPanelBundle\Entity\DB){
             $this->setUserValue($entity);
         }
     }
