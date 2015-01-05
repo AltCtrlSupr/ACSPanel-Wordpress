@@ -22,7 +22,6 @@ class WordpressMenuSubscriber implements EventSubscriberInterface
     public function wordpressItems(FilterMenuEvent $menu_filter)
     {
         $menu = $menu_filter->getMenu();
-        // TODO: Change the name of settings action
-        $menu->addChild('menu.wordpress.main', array( 'route' => 'wpsetup'));
+        $menu->addChild('menu.wordpress.main', array( 'route' => 'wpsetup', 'extras' => array('icon' => 'fa-wordpress')));
     }
 }
