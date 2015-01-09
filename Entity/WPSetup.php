@@ -177,7 +177,7 @@ class WPSetup
      * @param \ACS\ACSPanelWordpressBundle\Entity\FosUser $user
      * @return WPSetup
      */
-    public function setUser(\ACS\ACSPanelBundle\Entity\FosUser $user = null)
+    public function setUser(\ACS\ACSPanelUsersBundle\Entity\FosUser $user = null)
     {
         $this->user = $user;
 

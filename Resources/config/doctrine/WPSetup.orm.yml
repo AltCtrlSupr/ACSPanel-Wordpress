@@ -25,7 +25,7 @@ ACS\ACSPanelWordpressBundle\Entity\WPSetup:
 
     manyToOne:
         user:
-            targetEntity: ACS\ACSPanelBundle\Entity\FosUser
+            targetEntity: ACS\ACSPanelUsersBundle\Entity\FosUser
             cascade: {  }
             inversedBy: null
             joinTable: null
