@@ -2,27 +2,19 @@
 
 namespace ACS\ACSPanelWordpressBundle\Entity;
 
+use ACS\ACSPanelBundle\Model\Entity\AclEntity;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * WPSetup
  */
-class WPSetup
+class WPSetup implements AclEntity
 {
     /**
      * @var integer
      */
     private $id;
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * @var boolean
@@ -44,7 +36,6 @@ class WPSetup
      */
     private $httpd_host;
 
-
     /**
      * @var \ACS\ACSPanelBundle\Entity\DatabaseUser
      */
@@ -55,6 +46,20 @@ class WPSetup
      */
     private $user;
 
+    public function __toString()
+    {
+        return $this->getHttpdHost()->__toString();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Set enabled
@@ -211,5 +216,10 @@ class WPSetup
     public function setUpdatedAtValue()
     {
         $this->updatedAt = new \DateTime();
+    }
+
+    public function getOwners()
+    {
+        return $this->getUser();
     }
 }
