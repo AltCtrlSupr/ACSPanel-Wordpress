@@ -9,7 +9,7 @@ class DatabaseUserControllerTest extends CommonTestCase
     public function testCompleteScenario()
     {
         // Create a new client to browse the application
-        $this->client = $this->createAuthorizedClient('superadmin','1234');
+        $this->client = $this->createSuperadminClient();
 
         $crawler = $this->client->request('GET', '/wpsetup/new');
         $this->assertTrue(200 === $this->client->getResponse()->getStatusCode());
@@ -21,7 +21,6 @@ class DatabaseUserControllerTest extends CommonTestCase
             'acs_acspanelwordpressbundle_wpsetuptype[user]' => '1',
         ));
 
-        //ldd($this->client->submit($form)->html());
         $this->client->submit($form);
     }
 
