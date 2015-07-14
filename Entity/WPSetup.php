@@ -42,7 +42,7 @@ class WPSetup implements AclEntity
     private $database_user;
 
     /**
-     * @var \ACS\ACSPanelBundle\Entity\FosUser
+     * @var \ACS\ACSPanelBundle\Entity\User
      */
     private $user;
 
@@ -179,10 +179,10 @@ class WPSetup implements AclEntity
     /**
      * Set user
      *
-     * @param \ACS\ACSPanelWordpressBundle\Entity\FosUser $user
+     * @param \ACS\ACSPanelWordpressBundle\Entity\User $user
      * @return WPSetup
      */
-    public function setUser(\ACS\ACSPanelUsersBundle\Entity\FosUser $user = null)
+    public function setUser(\ACS\ACSPanelUsersBundle\Entity\User $user = null)
     {
         $this->user = $user;
 
@@ -192,7 +192,7 @@ class WPSetup implements AclEntity
     /**
      * Get user
      *
-     * @return \ACS\ACSPanelWordpressBundle\Entity\FosUser
+     * @return \ACS\ACSPanelWordpressBundle\Entity\User
      */
     public function getUser()
     {
